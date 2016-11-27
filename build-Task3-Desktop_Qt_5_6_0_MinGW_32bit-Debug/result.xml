@@ -1,0 +1,18 @@
+<!DOCTYPE addressbook>
+<addressbook>
+ <contact number="changed">
+  <name number="changed">Piggy</name>
+  <phone number="changed">+49 631322187</phone>
+  <email number="changed">piggy@mega.de</email>
+ </contact>
+ <contact number="changed">
+  <name number="changed">Kermit</name>
+  <phone number="changed">+49 631322181</phone>
+  <email number="changed">kermit@mega.de</email>
+ </contact>
+ <contact number="changed">
+  <name number="changed">Gonzo</name>
+  <phone number="changed">+49 631322186</phone>
+  <email number="changed">gonzo@mega.de</email>
+ </contact>
+</addressbook>
