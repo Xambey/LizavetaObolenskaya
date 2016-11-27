@@ -12,16 +12,10 @@ private:
         QMimeData* pMimeData = new QMimeData;
 
         QString data("");
-            auto index = this->currentIndex();
-            for(int row2 = 0; row2 < 3; row2++){
-                data += index.child(row2,0).data().toString();
-            }
-//            QModelIndex index = this->model()->index(row,0);
-//            QStringList list = this->model()->data(index).toStringList();
-//            foreach(QString s, list){
-//                data += s;
-//            }
-        //data = this->currentIndex(
+        auto index = this->currentIndex();
+        for(int row = 0; row < 3; row++){
+            data += " " + index.child(row,0).data().toString();
+        }
 
         pMimeData->setText(data);
 
