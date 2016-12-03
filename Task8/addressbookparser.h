@@ -14,7 +14,7 @@ private:
 
     void printBook(Contact* contact) //печать отдельной книги
     {
-        qDebug() << "Attribute: " << contact->getAttributNumber();
+        qDebug() << "\nAttribute: " << contact->getAttributNumber();
 
         QMap<QString, QString> info = contact->getInformation();
         for(auto i = info.begin(); i != info.end();i++) { //идем по списку данных книги и выводим в консоль
@@ -34,19 +34,22 @@ private:
 
 public:
 
-    void printBooks() //напечатать контакты по выборкам(по первой букве имени контакта
+    void printBooks() //напечатать контакты с одинаковым именем
     {
+        qDebug() << "contacts with the same name\n";
         for(Contact* contact : contacts) {
             if(contact->printed) continue; //если контакт уже печатан, пропускам итерацию
 
-            qDebug() << "Begin selection\n";
-            QChar c = contact->getInformation().value("name").at(0); //первый символ имени контакта
-
-            for(Contact* t : contacts) { //вывод контакта если первая буква ... совпадает
-                if(t->getInformation().value("name").at(0) == c)
+            QString c = contact->getInformation().value("name"); //первый символ имени контакта
+            bool finded = false; //есть ли контакты с таким же именем
+            for(Contact* t : contacts) { //вывод контакта если имена контактов ... совпадает
+                if(t->getInformation().value("name") == c && t != contact){
                     printBook(t);
+                    finded = true;
+                }
             }
-            qDebug() << "End selection\n";
+            if(finded) //если есть контакты с таким же именем, то выводим и контакт, для которго искали
+                printBook(contact);
         }
     }
 
