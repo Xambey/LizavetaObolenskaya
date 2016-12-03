@@ -71,7 +71,7 @@ void traverseNode(const QDomNode& node)
         if(domNode.isElement()) {
             QDomElement domElement = domNode.toElement();
             if(!domElement.isNull()) {
-                if(domElement.tagName() == "contact") {
+                if(domElement.tagName() == "contact") { //меняем теги
                     domElement.setTagName("ChangedTag");
                 }
             }
@@ -82,7 +82,7 @@ void traverseNode(const QDomNode& node)
 }
 
 int main(){
-
+    //см комменты из 3 задания
     createXmlDoc();
 
 
@@ -95,7 +95,7 @@ int main(){
         }
         file.close();
 
-        if(file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) //открыть в режиме записи и режиме усечения(редактирования)
             QTextStream(&file) << domDoc.toString();
         file.close();
 
