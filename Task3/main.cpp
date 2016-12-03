@@ -7,7 +7,8 @@ QDomElement makeElement( QDomDocument& domDoc,
                          const QString& strText = QString()
         )
 {
-    QDomElement domElement = domDoc.createElement(strName);
+    QDomElement domElement = domDoc.createElement(strName); //элемент документа в стиле DOM
+    //создаем элемент для добавления
     if (!strAttr.isEmpty()) {
         QDomAttr domAttr = domDoc.createAttribute("number");
         domAttr.setValue(strAttr);
@@ -28,11 +29,13 @@ QDomElement contact( QDomDocument& domDoc,
                      const QString& strEmail
                      )
 {
+    //создаем контакт
     static int nNumber = 1;
     QDomElement domElement = makeElement(domDoc,
                                          "contact",
                                          QString().setNum(nNumber)
                                          );
+    //добавляем внутренние теги
     domElement.appendChild(makeElement(domDoc, "name", "", strName));
     domElement.appendChild(makeElement(domDoc, "phone", "", strPhone));
     domElement.appendChild(makeElement(domDoc, "email", "", strEmail));
@@ -40,12 +43,13 @@ QDomElement contact( QDomDocument& domDoc,
     return domElement;
 }
 
-void createXmlDoc()
+void createXmlDoc() //создаем XML документ
 {
-    QDomDocument doc("addressbook");
+    QDomDocument doc("addressbook"); //создать документ
     QDomElement domElement = doc.createElement("addressbook");
-    doc.appendChild(domElement);
+    doc.appendChild(domElement); //добавить элемент(тег <addressbook>)
 
+    //контакты
     QDomElement contact1 =
             contact(doc, "Piggy", "+49 631322187", "piggy@mega.de");
     QDomElement contact2 =
@@ -57,14 +61,15 @@ void createXmlDoc()
     domElement.appendChild(contact2);
     domElement.appendChild(contact3);
 
+    //создаем файл для залива данных
     QFile file("addressbook.xml");
     if(file.open(QIODevice::WriteOnly)) {
-        QTextStream(&file) << doc.toString();
+        QTextStream(&file) << doc.toString(); //запись в файл
         file.close();
     }
 }
 
-void traverseNode(const QDomNode& node)
+void traverseNode(const QDomNode& node) //меняем xml документ
 {
     QDomNode domNode = node.firstChild();
     while(!domNode.isNull()) {
@@ -78,31 +83,31 @@ void traverseNode(const QDomNode& node)
             }
         }
         traverseNode(domNode);
-        domNode = domNode.nextSibling();
+        domNode = domNode.nextSibling(); //след. элемент
     }
 }
 
 int main(){
 
-    createXmlDoc();
+    createXmlDoc(); //создаем элемент
 
 
     QDomDocument domDoc;
+    //файлы, 1й чтение, 2й запись результата
     QFile file("addressbook.xml");
     QFile save("result.xml");
 
-    if(file.open(QIODevice::ReadWrite)) {
+    if(file.open(QIODevice::ReadWrite)) { //открываем в режиме чтения и записи
         if(domDoc.setContent(&file)) {
             QDomElement domElement= domDoc.documentElement();
-            traverseNode(domElement);
+            traverseNode(domElement); //обрабатываем элемент
         }
 
-        if(save.open(QIODevice::WriteOnly)) {
-            QTextStream(&save) << domDoc.toString();
+        if(save.open(QIODevice::WriteOnly)) { //открыть(создать) файл в режиме записи
+            QTextStream(&save) << domDoc.toString(); //записываем измененные данные
             file.close();
         }
 
-        file.close();
         save.close();
     }
 
