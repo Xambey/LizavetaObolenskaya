@@ -6,18 +6,18 @@
 int main()
 {
     try{
-        AddressBookParser parcer;
+        AddressBookParser parcer; //создаем наш парсер
         QFile* file = new QFile("addressbook.xml");
 
-        QXmlInputSource source(file);
-        QXmlSimpleReader reader;
+        QXmlInputSource source(file); //объект источника для парсинга документа
+        QXmlSimpleReader reader; //ридер документа
 
-        reader.setContentHandler(&parcer);
-        reader.parse(source);
+        reader.setContentHandler(&parcer); //устанавливаем обработчик
+        reader.parse(source); //запуск парсинга
 
         return 0;
     }
-    catch(QException& ex)
+    catch(QException& ex) //обработка ошибок
     {
         qDebug() << ex.what();
     }

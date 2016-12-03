@@ -6,13 +6,13 @@
 class AddressBookParser : public QXmlDefaultHandler
 {
 private:
-    QString _text;
+    QString _text; // данные
 public:
-
+    //переопределенные методы, расположены в порядке вызова
     virtual bool startElement(const QString &namespaceURI,
                          const QString &localName,
                          const QString &qName,
-                         const QXmlAttributes &atts)
+                         const QXmlAttributes &atts) //атрибуты документа
     {
         for(int i = 0; i < atts.count(); i++){
             if(atts.localName(i) == "number") {
@@ -30,13 +30,13 @@ public:
 
     virtual bool endElement(const QString&, const QString&, const QString& str)
     {
-        if(str != "contact" && str != "addressbook") {
+        if(str != "contact" && str != "addressbook") { //не обрабатываем /contact, /addressbook
             qDebug() << "Tag name: " << str << "\t Text: " << _text;
         }
         return true;
     }
 
-    virtual bool fatalError(const QXmlParseException& ex)
+    virtual bool fatalError(const QXmlParseException& ex) //обработка исключительных ситуаций
     {
         qDebug() << "Line: " << ex.lineNumber() << "\t Column: " << ex.columnNumber() << "\t Message: " << ex.message();
         return false;
