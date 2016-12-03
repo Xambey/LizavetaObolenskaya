@@ -1,20 +1,20 @@
+#include <QtXml>
 int main()
 {
-    try{
-        Addressbookparser parcer;
-        QFile* file = new QFile("addressbook.xml");
+    QFile file("matrix.xml");
+    if(file.open(QIODevice::ReadOnly)) {
+        QXmlStreamReader reader(&file);
+        int sum = 0;
+        do{
+            reader.readNext();
+            sum += reader.text().toInt();
+        } while(!reader.atEnd());
 
-        QXmlInputSource source(file);
-        QXmlSimpleReader reader;
-
-        reader.setContentHandler(&parcer);
-        reader.parse(source);
-
-        parcer.printBooks();
-        return 0;
+        if(reader.hasError()) {
+            qDebug() << "Error: " << reader.errorString();
+        }
+        qDebug() << "Common sum: " << sum;
+        file.close();
     }
-    catch(QException& ex)
-    {
-        qDebug() << ex.what();
-    }
+    return 0;
 }
