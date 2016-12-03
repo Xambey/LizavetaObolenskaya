@@ -14,11 +14,9 @@ public:
                          const QString &qName,
                          const QXmlAttributes &atts)
     {
-        bool result = false;
         for(int i = 0; i < atts.count(); i++){
             if(atts.localName(i) == "number") {
                 qDebug() << "Attribute: " << atts.value(i);
-                result = true;
             }
         }
         return true;
