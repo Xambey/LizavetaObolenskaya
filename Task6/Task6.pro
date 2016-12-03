@@ -5,4 +5,4 @@ SOURCES += \
 
 HEADERS += \
     addressbookparser.h \
-    book.h
+    contact.h

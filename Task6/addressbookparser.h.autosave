@@ -3,7 +3,7 @@
 #include <QtXml>
 #include <QVector>
 #include <QDebug>
-#include "book.h"
+#include "contact.h"
 
 class Addressbookparser : public QXmlDefaultHandler
 {

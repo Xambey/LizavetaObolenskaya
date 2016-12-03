@@ -2,7 +2,7 @@
 
 int main()
 {
-    try{
+    try{ //см. 5 задание
         Addressbookparser parcer;
         QFile* file = new QFile("addressbook.xml");
 
