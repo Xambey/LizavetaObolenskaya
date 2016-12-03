@@ -18,7 +18,7 @@ private:
 
         QMap<QString, QString> info = contact->getInformation();
         for(auto i = info.begin(); i != info.end();i++) {
-            qDebug() << "Tag name: " << i.key()<< "\t Text: " << i.value();
+            qDebug() << "\tTag name: " << i.key()<< "\t Text: " << i.value();
         }
         contact->printed = true;
     }
