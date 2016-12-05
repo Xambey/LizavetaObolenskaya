@@ -33,25 +33,26 @@ bool AddressBookParser::contactConsist(QString atrNumber) //проверка с�
 
 void AddressBookParser::printBooks() //напечатать контакты по выборкам(по первой букве имени контакта
 {
-        QString str;
-        QStringList l = edit->toPlainText().split("\n");
-        for(QString s : l) {
-            str += s + "\n";
-        }
-        str += "Begin selection\n";
-        QChar c = letter;
-        //QChar c = contact->getInformation().value("name").at(0); //первый символ имени контакта
+    QString str;
+    int count = -1;
+    QStringList l = edit->toPlainText().split("\n");
+    for(QString s : l) {
+        str += s + "\n";
+    }
+    //QChar c = contact->getInformation().value("name").at(0); //первый символ имени контакта
 
-        for(Contact* t : contacts) { //вывод контакта если первая буква ... совпадает
-            if(t->getInformation().value("name").at(0) == c.toLower() || t->getInformation().value("name").at(0) == c.toUpper())
-                str += printBook(t);
+    for(Contact* t : contacts) { //вывод контакта если первая буква ... совпадает
+        if(t->getInformation().value("name") == name){
+            str += printBook(t);
+            count++;
         }
-
-        str += "End selection\n";
-        if(finded)
-            edit->setText(str);
-        else
-            edit->setText("Контакты, с такой первой буквой в имени, не найдены!");
+    }
+    if(finded && count)
+        edit->setText(str);
+    else if(finded && !count)
+        edit->setText("есть только 1 контакт с таким именем!\n\n" + str);
+    else
+        edit->setText("контактов с таким именем нет!");
 }
 
 bool AddressBookParser::startElement(const QString &, const QString &, const QString &, const QXmlAttributes &atts)

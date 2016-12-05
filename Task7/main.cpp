@@ -1,20 +1,23 @@
 #include <QtXml>
-int main()
+#include "textedit.h"
+int main(int argc, char** argv)
 {
-    QFile file("matrix.xml");
-    if(file.open(QIODevice::ReadOnly)) {
-        QXmlStreamReader reader(&file); //считывание при помощи Потокового ридера XML
-        int sum = 0; //сумма
-        do{
-            reader.readNext(); //считываем след. строку
-            sum += reader.text().toInt(); //добавляем в сумму
-        } while(!reader.atEnd());//пока не конец файла
+    QApplication app(argc, argv);
 
-        if(reader.hasError()) { //ошибка!
-            qDebug() << "Error: " << reader.errorString();
-        }
-        qDebug() << "Common sum: " << sum; //вывод общей суммы
-        file.close();
-    }
-    return 0;
+    QWidget wgt;
+    wgt.resize(400,600);
+
+    TextEdit edit;
+    QPushButton button("Обновить");
+    QVBoxLayout* layout = new QVBoxLayout(&wgt);
+
+    layout->addWidget(&edit);
+    layout->addWidget(&button);
+
+    QObject::connect(&button, SIGNAL(clicked(bool)), &edit, SLOT(print(bool)));
+
+    wgt.show();
+
+
+    return app.exec();
 }

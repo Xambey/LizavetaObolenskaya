@@ -3,8 +3,8 @@
 
 void TextEdit::parserSlot(QString)
 {
-    if(!(edit->text().count() == 1)){
-        setText("Введите одну латинскую букву!");
+    if(edit->text().isEmpty()){
+        setText("Введите имя контакта!");
         return;
     }
     clear();
@@ -22,5 +22,5 @@ void TextEdit::parserSlot(QString)
 
 TextEdit::TextEdit(QLineEdit *edit){
     this->edit = edit;
-    setText("Введите первую букву имени контактов, для которых нужно сделать выборку");
+    setText("Введите имя контакта для поиска");
 }

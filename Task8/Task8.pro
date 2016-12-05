@@ -1,9 +1,13 @@
 QT += xml
+QT += widgets
 QMAKE_CXXFLAGS=-std=c++11
-
-SOURCES += \
-    main.cpp
 
 HEADERS += \
     addressbookparser.h \
-    contact.h
+    contact.h \
+    textedit.h
+
+SOURCES += \
+    addressbookparser.cpp \
+    main.cpp \
+    textedit.cpp
