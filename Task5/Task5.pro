@@ -1,7 +1,10 @@
 QT += xml
-
+QT += widgets
 SOURCES += \
-    main.cpp
+    main.cpp \
+    textedit.cpp \
+    addressbookparser.cpp
 
 HEADERS += \
-    addressbookparser.h
+    addressbookparser.h \
+    textedit.h

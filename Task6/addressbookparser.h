@@ -5,88 +5,38 @@
 #include <QDebug>
 #include "contact.h"
 
-class Addressbookparser : public QXmlDefaultHandler
+class TextEdit;
+class AddressBookParser : public QXmlDefaultHandler
 {
 private:
-    QString _text;
+    TextEdit* edit;
+    QString _text; // данные
+    QChar letter;
+    QString localName;
+    bool finded;
     QVector<Contact*> contacts; //вектор(список) контактов
     Contact* contact; //текущий контакт
 
-    void printBook(Contact* contact) //печать отдельной книги
-    {
-        qDebug() << "Attribute: " << contact->getAttributNumber();
-
-        QMap<QString, QString> info = contact->getInformation();
-        for(auto i = info.begin(); i != info.end();i++) { //идем по списку данных книги и выводим в консоль
-            qDebug() << "\tTag name: " << i.key()<< "\t Text: " << i.value();
-        }
-        contact->printed = true; //флаг, книга была напечатана
-    }
+    QString printBook(Contact* contact);
 
     bool contactConsist(QString atrNumber) //проверка существования контакта в списке контактов
-    {
-        for(Contact* item : contacts) {
-            if(item->getAttributNumber() == atrNumber) //номер совпадает
-                return true;
-        }
-        return false;
-    }
+;
 
 public:
 
-    void printBooks() //напечатать контакты по выборкам(по первой букве имени контакта
-    {
-        for(Contact* contact : contacts) {
-            if(contact->printed) continue; //если контакт уже печатан, пропускам итерацию
-
-            qDebug() << "Begin selection\n";
-            QChar c = contact->getInformation().value("name").at(0); //первый символ имени контакта
-
-            for(Contact* t : contacts) { //вывод контакта если первая буква ... совпадает
-                if(t->getInformation().value("name").at(0) == c)
-                    printBook(t);
-            }
-            qDebug() << "End selection\n";
-        }
-    }
+    void printBooks();
+    AddressBookParser(TextEdit* e, QString num);
 
     virtual bool startElement(const QString &namespaceURI,
                          const QString &localName,
                          const QString &qName,
-                         const QXmlAttributes &atts)
-    {
-        if(atts.count() == 0) //если атрибутов нет, пропуск
-            return true;
-        if(contactConsist(atts.value(0))) { //контакт уже существует
-            return true;
-        }
-        contact = new Contact; //создаем объект контакта
-        contact->setAttributeNumber(atts.value(0)); //устанавливаем номер атрибута(number="i")
-        contact->setLocalName(localName);//локал. имя контакта
-        return true;
-    }
+                         const QXmlAttributes &atts);
 
-    virtual bool characters(const QString& text)
-    {
-        _text = text;
-        return true;
-    }
+    virtual bool characters(const QString& text);
 
-    virtual bool endElement(const QString&, const QString&, const QString& str)
-    {
-        if(str != "contact" && str != "addressbook") { //см 5 задание
-            contact->addInfo(str, _text);
-        }
-        if(!contactConsist(contact->getAttributNumber())) //если контакта ранее не было, добавляем в список контактов
-            contacts.append(contact);
-        return true;
-    }
+    virtual bool endElement(const QString&, const QString&, const QString& str);
 
-    virtual bool fatalError(const QXmlParseException& ex)
-    {
-        qDebug() << "Line: " << ex.lineNumber() << "\t Column: " << ex.columnNumber() << "\t Message: " << ex.message();
-        return false;
-    }
+    virtual bool fatalError(const QXmlParseException& ex);
 
 
 

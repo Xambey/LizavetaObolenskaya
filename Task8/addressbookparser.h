@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "contact.h"
 
-class Addressbookparser : public QXmlDefaultHandler
+class AddressBookParser : public QXmlDefaultHandler
 {
 private:
     QString _text;

@@ -3,7 +3,7 @@
 int main()
 {
     try{ //см. 5 задание
-        Addressbookparser parcer;
+        AddressBookParser parcer;
         QFile* file = new QFile("addressbook.xml");
 
         QXmlInputSource source(file);

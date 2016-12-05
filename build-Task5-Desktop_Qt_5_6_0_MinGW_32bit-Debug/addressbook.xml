@@ -15,4 +15,9 @@
   <phone>+49 631322186</phone>
   <email>gonzo@mega.de</email>
  </contact>
+ <contact number="2">
+  <name>Gonzo</name>
+  <phone>+49 631322186</phone>
+  <email>gonzo@mega.de</email>
+ </contact>
 </addressbook>

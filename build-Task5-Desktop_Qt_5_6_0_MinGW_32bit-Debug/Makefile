@@ -183,6 +183,7 @@ Makefile: ../Task5/Task5.pro C:/Qt/5.6/mingw49_32/mkspecs/win32-g++/qmake.conf C
 		C:/Qt/5.6/mingw49_32/mkspecs/features/resources.prf \
 		C:/Qt/5.6/mingw49_32/mkspecs/features/moc.prf \
 		C:/Qt/5.6/mingw49_32/mkspecs/features/win32/opengl.prf \
+		C:/Qt/5.6/mingw49_32/mkspecs/features/uic.prf \
 		C:/Qt/5.6/mingw49_32/mkspecs/features/win32/windows.prf \
 		C:/Qt/5.6/mingw49_32/mkspecs/features/testcase_targets.prf \
 		C:/Qt/5.6/mingw49_32/mkspecs/features/exceptions.prf \
@@ -190,6 +191,7 @@ Makefile: ../Task5/Task5.pro C:/Qt/5.6/mingw49_32/mkspecs/win32-g++/qmake.conf C
 		C:/Qt/5.6/mingw49_32/mkspecs/features/lex.prf \
 		../Task5/Task5.pro \
 		C:/Qt/5.6/mingw49_32/lib/qtmaind.prl \
+		C:/Qt/5.6/mingw49_32/lib/Qt5Widgets.prl \
 		C:/Qt/5.6/mingw49_32/lib/Qt5Gui.prl \
 		C:/Qt/5.6/mingw49_32/lib/Qt5Xml.prl \
 		C:/Qt/5.6/mingw49_32/lib/Qt5Core.prl
@@ -318,6 +320,7 @@ C:/Qt/5.6/mingw49_32/mkspecs/features/qt.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/resources.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/moc.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/win32/opengl.prf:
+C:/Qt/5.6/mingw49_32/mkspecs/features/uic.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/win32/windows.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/testcase_targets.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/exceptions.prf:
@@ -325,6 +328,7 @@ C:/Qt/5.6/mingw49_32/mkspecs/features/yacc.prf:
 C:/Qt/5.6/mingw49_32/mkspecs/features/lex.prf:
 ../Task5/Task5.pro:
 C:/Qt/5.6/mingw49_32/lib/qtmaind.prl:
+C:/Qt/5.6/mingw49_32/lib/Qt5Widgets.prl:
 C:/Qt/5.6/mingw49_32/lib/Qt5Gui.prl:
 C:/Qt/5.6/mingw49_32/lib/Qt5Xml.prl:
 C:/Qt/5.6/mingw49_32/lib/Qt5Core.prl:

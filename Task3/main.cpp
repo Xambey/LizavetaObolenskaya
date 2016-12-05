@@ -82,7 +82,7 @@ void traverseNode(const QDomNode& node) //меняем xml документ
                 }
             }
         }
-        traverseNode(domNode);
+        traverseNode(domNёode);
         domNode = domNode.nextSibling(); //след. элемент
     }
 }

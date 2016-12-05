@@ -1,25 +1,32 @@
-#include "addressbookparser.h"
-#include <QFile>
-#include <QIODevice>
-#include <QException>
+#include "textedit.h"
 
-int main()
+int main(int argc, char** argv)
 {
     try{
-        AddressBookParser parcer; //создаем наш парсер
-        QFile* file = new QFile("addressbook.xml");
+        QApplication app(argc, argv);
 
-        QXmlInputSource source(file); //объект источника для парсинга документа
-        QXmlSimpleReader reader; //ридер документа
+        QWidget wgt;
+        wgt.resize(400,600);
 
-        reader.setContentHandler(&parcer); //устанавливаем обработчик
-        reader.parse(source); //запуск парсинга
+        QVBoxLayout* layout = new QVBoxLayout(&wgt);
 
-        return 0;
+        QLineEdit* line = new QLineEdit;
+        TextEdit* edit = new TextEdit(line);
+
+        layout->addWidget(line);
+        layout->addWidget(edit);
+        wgt.show();
+
+        QObject::connect(line, SIGNAL(textChanged(QString)),edit,SLOT(parserSlot(QString)));
+        QObject::connect(line,SIGNAL(selectionChanged()),line,SLOT(clear()));
+
+        return app.exec();
     }
     catch(QException& ex) //обработка ошибок
     {
-        qDebug() << ex.what();
+        QMessageBox M;
+        M.setText(QString(ex.what()));
+        M.show();
     }
-
+    return 0;
 }
