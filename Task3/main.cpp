@@ -1,5 +1,6 @@
 #include <QtXml>
-
+#include <QtWidgets>
+#include "QMessageBox"
 
 QDomElement makeElement( QDomDocument& domDoc,
                          const QString& strName,
@@ -82,13 +83,13 @@ void traverseNode(const QDomNode& node) //меняем xml документ
                 }
             }
         }
-        traverseNode(domNёode);
+        traverseNode(domNode);
         domNode = domNode.nextSibling(); //след. элемент
     }
 }
 
-int main(){
-
+int main(int argc, char** argv){
+    QApplication app(argc, argv);
     createXmlDoc(); //создаем элемент
 
 
@@ -111,5 +112,9 @@ int main(){
         save.close();
     }
 
-    return 0;
+    QMessageBox lbl;
+    lbl.setText("XML документ отформатирован!");
+    lbl.show();
+
+    return app.exec();
 }

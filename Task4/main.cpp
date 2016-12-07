@@ -1,4 +1,5 @@
 #include <QtXml>
+#include <QtWidgets>
 
 
 QDomElement makeElement( QDomDocument& domDoc,
@@ -81,7 +82,8 @@ void traverseNode(const QDomNode& node)
     }
 }
 
-int main(){
+int main(int argc, char** argv){
+    QApplication app(argc, argv);
     //см комменты из 3 задания
     createXmlDoc();
 
@@ -101,5 +103,9 @@ int main(){
 
     }
 
-    return 0;
+    QMessageBox lbl;
+    lbl.setText("XML документ отредактирован!");
+    lbl.show();
+
+    return app.exec();
 }

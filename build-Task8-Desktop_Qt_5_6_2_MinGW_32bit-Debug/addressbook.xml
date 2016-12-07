@@ -1,0 +1,27 @@
+<addressbook>
+ <contact number="1">
+  <name>Piggy</name>
+  <phone>+49 631322187</phone>
+  <email>piggy@mega.de</email>
+ </contact>
+ <contact number="2">
+  <name>Kermit</name>
+  <phone>+49 631322181</phone>
+  <email>kermit@mega.de</email>
+ </contact>
+ <contact number="3">
+  <name>Gonzo</name>
+  <phone>+49 631322186</phone>
+  <email>gonzo@mega.de</email>
+ </contact>
+ <contact number="4">
+  <name>Ganza</name>
+  <phone>+49 631322189</phone>
+  <email>ganzo@gmail.com</email>
+ </contact>
+ <contact number="5">
+  <name>Kermit</name>
+  <phone>+24 634535665</phone>
+  <email>kermit@mail.com</email>
+ </contact>
+</addressbook>

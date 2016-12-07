@@ -3,7 +3,7 @@
 
 AddressBookParser::AddressBookParser(TextEdit *e, QString num)
 {
-    name = num;
+    letter = num.at(0);
     edit = e;
     finded = false;
 }
